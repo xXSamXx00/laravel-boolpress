@@ -39,7 +39,7 @@
                             <a class="nav-link" href="">Homepage</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">About</a>
+                            <a class="nav-link" href="{{ route('products.index') }}">Prodotti</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="">Contacts</a>
@@ -68,6 +68,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{route('admin.home')}}">Dashboard</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}

@@ -18,8 +18,14 @@ Route::get('/', function () {
     return view('guest.home');
 })->name('home');
 
+Route::resource('products', ProductController::class)->only([
+    'index', 'show'
+]);
+
 Auth::routes();
 
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
+
+    Route::resource('products', CreateproductController::class);
 });
