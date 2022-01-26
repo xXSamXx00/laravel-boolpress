@@ -35,7 +35,7 @@
                     <td>{{ $product->created_at }}</td>
                     <td>{{ $product->updated_at }}</td>
                     <td>
-                        <a href="" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                        <a href="{{ route('admin.products.show', $product->id) }}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
                         <a href="" class="btn btn-secondary"><i class="fas fa-pencil-alt"></i></a>
                     </td>
                 </tr>

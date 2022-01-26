@@ -11352,7 +11352,11 @@ body {
   z-index: 3;
 }
 
-main .sticky-top {
+#admin_main .sticky-top {
   position: relative;
   z-index: 2;
+}
+#admin_main .show {
+  display: flex;
+  justify-content: center;
 }
