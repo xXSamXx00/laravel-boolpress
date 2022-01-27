@@ -31,9 +31,9 @@
             </div>
             <div class="mb-3">
                 <label for="price" class="form-label">Prezzo</label>
-                <input type="number" class="form-control" name="price" id="price" class="form-control @error('number') is-invalid @enderror" aria-describedby="numberHelper" placeholder="Inserisci il prezzo" value="{{ $product->number }}" step="0.01">
-                <small id="numberHelper" class="form-text text-muted">Inserisci il prezzo del prodotto</small>
-                @error('number')
+                <input type="number" class="form-control" name="price" id="price" class="form-control @error('price') is-invalid @enderror" aria-describedby="priceHelper" placeholder="Inserisci il prezzo" value="{{ $product->price }}" step="0.01">
+                <small id="priceHelper" class="form-text text-muted">Inserisci il prezzo del prodotto</small>
+                @error('price')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>

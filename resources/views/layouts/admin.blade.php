@@ -108,9 +108,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="">
+                                    <a class="nav-link" href="{{ route('admin.posts.index') }}">
                                         <span class="mx-2" data-feather="shopping-cart"><i class="fas fa-thumbtack"></i></span>
-                                        Blogs
+                                        Posts
                                     </a>
                                 </li>
                             </ul>

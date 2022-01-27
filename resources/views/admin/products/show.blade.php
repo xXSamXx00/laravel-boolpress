@@ -6,7 +6,7 @@
 <div class="show mx-auto">
     <div class="col-3">
         <div class="card p-3">
-            <img class="img-fluid" src="{{ $product['image'] }}" alt="{{ $product->name }}">
+            <img class="img-fluid" src="{{ $product->image }}" alt="{{ $product->name }}">
             <p class="mt-3">{{ $product->price }}€</p>
             <p>{{ $product->description }}</p>
         </div>
