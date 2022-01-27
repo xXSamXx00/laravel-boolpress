@@ -103,14 +103,20 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.products.index') }}">
-                                        <span class="mx-2" data-feather="shopping-cart"><i class="fas fa-shopping-cart"></i></span>
+                                        <span class="mx-2" data-feather="products"><i class="fas fa-shopping-cart"></i></span>
                                         Prodotti
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.posts.index') }}">
-                                        <span class="mx-2" data-feather="shopping-cart"><i class="fas fa-thumbtack"></i></span>
+                                        <span class="mx-2" data-feather="posts"><i class="fas fa-thumbtack"></i></span>
                                         Posts
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.categories.index') }}">
+                                        <span class="mx-2" data-feather="categories"><i class="fas fa-thumbtack"></i></span>
+                                        Categorie Post
                                     </a>
                                 </li>
                             </ul>

@@ -7,7 +7,7 @@
     <div class="row g-5">
         @foreach($posts as $post)
         <div class="col-3">
-            <a href="{{ route('posts.show', $post->id) }}">
+            <a href="{{ route('posts.show', $post->slug) }}">
                 <div class="content">
                     <img class="img-fluid" src="{{ $post->image }}" alt="{{ $post->title }}">
                     <h3>{{ $post->title }}</h3>

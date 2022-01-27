@@ -19,6 +19,12 @@
                 <a href="{{ route('admin.posts.create') }}" class="btn btn-primary mt-3">Crea Post</a>
             </div>
         </div>
+        <div class="card col-3">
+            <div class="card-body text-center">
+                <h3>Categorie</h3>
+                <a href="{{ route('admin.categories.create') }}" class="btn btn-primary mt-3">Crea Categoria</a>
+            </div>
+        </div>
     </div>
 </div>
 

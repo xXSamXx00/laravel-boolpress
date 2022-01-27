@@ -29,6 +29,18 @@
                 @enderror
             </div>
             <div class="mb-3">
+                <label for="category_id" class="form-label">Categoria</label>
+                <select class="form-control @error('category_id') is-invalid @enderror" name="category_id" id="category_id">
+                    <option value="" selected>Seleziona una categoria</option>
+                    @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                    @error('category_id')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </select>
+            </div>
+            <div class="mb-3">
                 <label for="body" class="form-label">Descrizione</label>
                 <textarea placeholder="Inserisci la descrizione" class="form-control @error('body') is-invalid @enderror" name="body" id="body" rows="5">{{ old('body') }}</textarea>
                 @error('body')

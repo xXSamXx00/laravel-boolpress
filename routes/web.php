@@ -18,13 +18,9 @@ Route::get('/', function () {
     return view('guest.home');
 })->name('home');
 
-Route::resource('products', ProductController::class)->only([
-    'index', 'show'
-]);
+Route::resource('products', ProductController::class)->only(['index', 'show']);
 
-Route::resource('posts', PostController::class)->only([
-    'index', 'show'
-]);
+Route::resource('posts', PostController::class)->only(['index', 'show'])->parameter('post:id', 'post:slug');
 
 Auth::routes();
 
@@ -34,4 +30,6 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     Route::resource('products', CreateproductController::class);
 
     Route::resource('posts', CreatepostController::class);
+
+    Route::resource('categories', CreatecategoryController::class);
 });
