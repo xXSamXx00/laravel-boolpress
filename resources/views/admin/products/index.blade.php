@@ -36,7 +36,35 @@
                     <td>{{ $product->updated_at }}</td>
                     <td>
                         <a href="{{ route('admin.products.show', $product->id) }}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
-                        <a href="" class="btn btn-secondary"><i class="fas fa-pencil-alt"></i></a>
+                        <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-secondary"><i class="fas fa-pencil-alt"></i></a>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete{{ $product->id }}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="delete{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Eliminare definitivamente il prodotto numero <strong>{{ $product->id }}</strong>?</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Stai per eliminare definitivamente il prodotto <strong>{{ $product->name }}</strong>! Sei sicuro di voler continuare?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                                        <form action="{{ route('admin.products.destroy', $product->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Elimina</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </td>
                 </tr>
                 @endforeach

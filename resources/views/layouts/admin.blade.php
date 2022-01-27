@@ -104,7 +104,13 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.products.index') }}">
                                         <span class="mx-2" data-feather="shopping-cart"><i class="fas fa-shopping-cart"></i></span>
-                                        Products
+                                        Prodotti
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">
+                                        <span class="mx-2" data-feather="shopping-cart"><i class="fas fa-thumbtack"></i></span>
+                                        Blogs
                                     </a>
                                 </li>
                             </ul>
