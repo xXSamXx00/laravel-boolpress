@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -48,6 +49,8 @@ class CreatepostController extends Controller
             'image' => 'nullable|url',
             'body' => 'nullable'
         ]);
+
+        $validate['slug'] = Str::slug($validate['title']);
 
         Post::create($validate);
 
@@ -98,7 +101,7 @@ class CreatepostController extends Controller
 
         $post->update($validate);
 
-        return redirect()->route('admin.posts.index')->with('message', "Hai modificato il post $post->name correttamente.");
+        return redirect()->route('admin.posts.index')->with('message', "Hai modificato il post $post->title correttamente.");
     }
 
     /**
@@ -111,6 +114,6 @@ class CreatepostController extends Controller
     {
         $post->delete();
 
-        return redirect()->route('admin.posts.index')->with('message', "Hai cancellato il post $post->name correttamente.");
+        return redirect()->route('admin.posts.index')->with('message', "Hai cancellato il post $post->title correttamente.");
     }
 }

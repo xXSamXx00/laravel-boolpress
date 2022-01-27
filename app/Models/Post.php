@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'image', 'body', 'category_id'];
+    protected $fillable = ['title', 'slug', 'image', 'body', 'category_id'];
 
     /**
      * Get the route key for the model.

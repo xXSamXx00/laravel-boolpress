@@ -10,7 +10,7 @@
     <h2>Aggiorna Post</h2>
     <div class="create">
         @include('partials.error')
-        <form action="{{ route('admin.posts.update', $post->id) }}" method="post">
+        <form action="{{ route('admin.posts.update', $post->slug) }}" method="post">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -34,7 +34,7 @@
                 <select class="form-control @error('category_id') is-invalid @enderror" name="category_id" id="category_id">
                     <option value="">Nessuna categoria</option>
                     @foreach($categories as $category)
-                    <option value="{{ $category->id }}" {{ $category->id === $post->category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                    <option value="{{ $category->id }}" {{ $category->id === $post->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
                     @endforeach
                     @error('category_id')
                     <div class="alert alert-danger">{{ $message }}</div>
