@@ -6,7 +6,13 @@
 <div class="show mx-auto">
     <div class="col-3">
         <div class="card p-3">
-            <p>Categoria: {{ $post->category != null ? $post->category->name : 'Nessuna Categoria' }}</p>
+            <p>
+                @if($post->category)
+                Categorie: <a href="{{ route('categories.posts', $post->category->slug) }}">{{ $post->category->name }}</a>
+                @else
+                <span>Nessuna Categoria</span>
+                @endif
+            </p>
             <img class="img-fluid" src="{{ $post->image }}" alt="{{ $post->title }}">
             <p>{{ $post->body }}</p>
         </div>

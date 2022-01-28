@@ -22,6 +22,8 @@ Route::resource('products', ProductController::class)->only(['index', 'show']);
 
 Route::resource('posts', PostController::class)->only(['index', 'show'])->parameter('post', 'post:slug');
 
+Route::get('categories/{category:slug}/posts', 'CategoryController@posts')->name('categories.posts');
+
 Auth::routes();
 
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function () {

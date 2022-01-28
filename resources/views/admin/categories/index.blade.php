@@ -22,6 +22,7 @@
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Nome</th>
+                    <th scope="col">Post con Categoria</th>
                     <th scope="col">Creato il</th>
                     <th scope="col">Aggiornato il</th>
                     <th scope="col">Azioni</th>
@@ -32,6 +33,7 @@
                 <tr>
                     <td>{{ $category->id }}</td>
                     <td>{{ $category->name }}</td>
+                    <td><span class="badge rounded-pill bg-dark">{{ $category->posts()->count() }}</span></td>
                     <td>{{ $category->created_at }}</td>
                     <td>{{ $category->updated_at }}</td>
                     <td>

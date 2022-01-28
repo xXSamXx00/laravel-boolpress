@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class CreatepostController extends Controller
@@ -18,7 +19,7 @@ class CreatepostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderByDesc('id')->paginate(5);
+        $posts = Auth::user()->posts()->orderByDesc('id')->paginate(5);
 
         return view('admin.posts.index', compact('posts'));
     }
@@ -52,6 +53,8 @@ class CreatepostController extends Controller
 
         $validate['slug'] = Str::slug($validate['title']);
 
+        $validate['user_id'] = Auth::id();
+
         Post::create($validate);
 
         return redirect()->route('admin.posts.index')->with('message', "Hai creato un nuovo post con successo.");
@@ -78,7 +81,11 @@ class CreatepostController extends Controller
     {
         $categories = Category::all();
 
-        return view('admin.posts.edit', compact('post', 'categories'));
+        if (Auth::id() === $post->user_id) {
+            return view('admin.posts.edit', compact('post', 'categories'));
+        } else {
+            abort(403);
+        }
     }
 
     /**
@@ -90,19 +97,23 @@ class CreatepostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $validate = $request->validate([
-            'title' => [
-                'required',
-                Rule::unique('posts')->ignore($post->id)
-            ],
-            'category_id' => 'nullable|exists:categories,id',
-            'image' => 'nullable|url',
-            'body' => 'nullable'
-        ]);
+        if (Auth::id() === $post->user_id) {
+            $validate = $request->validate([
+                'title' => [
+                    'required',
+                    Rule::unique('posts')->ignore($post->id)
+                ],
+                'category_id' => 'nullable|exists:categories,id',
+                'image' => 'nullable|url',
+                'body' => 'nullable'
+            ]);
 
-        $post->update($validate);
+            $post->update($validate);
 
-        return redirect()->route('admin.posts.index')->with('message', "Hai modificato il post $post->title correttamente.");
+            return redirect()->route('admin.posts.index')->with('message', "Hai modificato il post $post->title correttamente.");
+        } else {
+            abort(403);
+        }
     }
 
     /**
@@ -113,8 +124,12 @@ class CreatepostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post->delete();
+        if (Auth::id() === $post->user_id) {
+            $post->delete();
 
-        return redirect()->route('admin.posts.index')->with('message', "Hai cancellato il post $post->title correttamente.");
+            return redirect()->route('admin.posts.index')->with('message', "Hai cancellato il post $post->title correttamente.");
+        } else {
+            abort(403);
+        }
     }
 }
