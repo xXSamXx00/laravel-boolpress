@@ -119,6 +119,12 @@
                                         Categorie Post
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.tags.index') }}">
+                                        <span class="mx-2" data-feather="tags"><i class="fas fa-thumbtack"></i></span>
+                                        Tags Post
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </nav>

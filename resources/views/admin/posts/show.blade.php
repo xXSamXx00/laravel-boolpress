@@ -13,6 +13,14 @@
                 <span>Nessuna Categoria</span>
                 @endif
             </p>
+            <p>
+                Tags:
+                @forelse($post->tags as $tag)
+                <a href="{{ route('tags.posts', $tag->slug) }}">{{ $tag->name }}</a>
+                @empty
+                <span>Nessun Tag</span>
+                @endforelse
+            </p>
             <img class="img-fluid" src="{{ $post->image }}" alt="{{ $post->title }}">
             <p>{{ $post->body }}</p>
         </div>

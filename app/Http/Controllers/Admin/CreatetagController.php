@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Str;
-use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
-class CreatecategoryController extends Controller
+class CreatetagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class CreatecategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderByDesc('id')->paginate(5);
+        $tags = Tag::orderByDesc('id')->paginate(5);
 
-        return view('admin.categories.index', compact('categories'));
+        return view('admin.tags.index', compact('tags'));
     }
 
     /**
@@ -28,7 +28,7 @@ class CreatecategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        return view('admin.tags.create');
     }
 
     /**
@@ -40,57 +40,57 @@ class CreatecategoryController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'name' => 'required|unique:categories'
+            'name' => 'required|unique:tags'
         ]);
 
         $validate['slug'] = Str::slug($validate['name']);
 
-        Category::create($validate);
+        Tag::create($validate);
 
-        return redirect()->route('admin.categories.index')->with('message', "Hai creato una nuova categoria con successo.");
+        return redirect()->route('admin.tags.index')->with('message', "Hai creato un nuovo tag con successo.");
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Tag $tag)
     {
-        return view('admin.categories.edit', compact('category'));
+        return view('admin.tags.edit', compact('tag'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Tag $tag)
     {
         $validate = $request->validate([
-            'name' => 'required|unique:categories'
+            'name' => 'required|unique:tags'
         ]);
 
         $validate['slug'] = Str::slug($validate['name']);
 
-        $category->update($validate);
+        $tag->update($validate);
 
-        return redirect()->route('admin.categories.index')->with('message', "Hai modificato la categoria $category->name correttamente.");
+        return redirect()->route('admin.tags.index')->with('message', "Hai modificato il tag $tag->name correttamente.");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Tag $tag)
     {
-        $category->delete();
+        $tag->delete();
 
-        return redirect()->route('admin.categories.index')->with('message', "Hai cancellato la categoria $category->name correttamente.");
+        return redirect()->route('admin.tags.index')->with('message', "Hai cancellato il tag $tag->name correttamente.");
     }
 }

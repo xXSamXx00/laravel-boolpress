@@ -24,6 +24,8 @@ Route::resource('posts', PostController::class)->only(['index', 'show'])->parame
 
 Route::get('categories/{category:slug}/posts', 'CategoryController@posts')->name('categories.posts');
 
+Route::get('tags/{tag:slug}/posts', 'TagController@posts')->name('tags.posts');
+
 Auth::routes();
 
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
@@ -34,4 +36,6 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     Route::resource('posts', CreatepostController::class);
 
     Route::resource('categories', CreatecategoryController::class);
+
+    Route::resource('tags', CreatetagController::class);
 });

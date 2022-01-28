@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -33,7 +34,9 @@ class CreatepostController extends Controller
     {
         $categories = Category::all();
 
-        return view('admin.posts.create', compact('categories'));
+        $tags = Tag::all();
+
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -55,7 +58,13 @@ class CreatepostController extends Controller
 
         $validate['user_id'] = Auth::id();
 
-        Post::create($validate);
+        $post = Post::create($validate);
+        if ($request->has('tags')) {
+            $request->validate([
+                'tags' => 'nullable|exists:tags,id'
+            ]);
+            $post->tags()->attach($request->tags);
+        }
 
         return redirect()->route('admin.posts.index')->with('message', "Hai creato un nuovo post con successo.");
     }
@@ -81,8 +90,10 @@ class CreatepostController extends Controller
     {
         $categories = Category::all();
 
+        $tags = Tag::all();
+
         if (Auth::id() === $post->user_id) {
-            return view('admin.posts.edit', compact('post', 'categories'));
+            return view('admin.posts.edit', compact('post', 'categories', 'tags'));
         } else {
             abort(403);
         }
@@ -108,7 +119,16 @@ class CreatepostController extends Controller
                 'body' => 'nullable'
             ]);
 
+            $validate['slug'] = Str::slug($validate['title']);
+
             $post->update($validate);
+
+            if ($request->has('tags')) {
+                $request->validate([
+                    'tags' => 'nullable|exists:tags,id'
+                ]);
+                $post->tags()->sync($request->tags);
+            }
 
             return redirect()->route('admin.posts.index')->with('message', "Hai modificato il post $post->title correttamente.");
         } else {

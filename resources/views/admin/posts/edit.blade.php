@@ -42,6 +42,15 @@
                 </select>
             </div>
             <div class="mb-3">
+                <label for="tags" class="form-label">Tags</label>
+                <select multiple class="form-select" name="tags[]" id="tags">
+                    <option disabled>Seleziona uno o più tag</option>
+                    @foreach($tags as $tag)
+                    <option value="{{ $tag->id }}" {{ $post->tags->contains($tag->id) ? 'selected' : '' }}>{{ $tag->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
                 <label for="body" class="form-label">Descrizione</label>
                 <textarea placeholder="Inserisci la descrizione" class="form-control @error('body') is-invalid @enderror" name="body" id="body" rows="5">{{ $post->body }}</textarea>
                 @error('body')

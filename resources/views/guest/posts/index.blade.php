@@ -6,7 +6,7 @@
     <h2 class="text-center mb-4">Tutti i posts</h2>
     <div class="row g-5">
         <aside class="col-3">
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-body">
                     <h3>Categorie</h3>
                     <ul>
@@ -22,11 +22,11 @@
                 <div class="card-body">
                     <h3>Tags</h3>
                     <ul>
-
+                        @foreach($tags as $tag)
                         <li>
-                            <a href=""></a>
+                            <a href="{{ route('tags.posts', $tag->slug) }}">{{ $tag->name }}</a>
                         </li>
-
+                        @endforeach
                     </ul>
                 </div>
             </div>
