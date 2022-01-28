@@ -54,7 +54,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                                        <form action="{{ route('admin.categories.destroy', $category->id) }}" method="category">
+                                        <form action="{{ route('admin.categories.destroy', $category->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Elimina</button>
@@ -63,7 +63,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </td>
                 </tr>
                 @endforeach

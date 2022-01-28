@@ -44,8 +44,8 @@ class CreatepostController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'category_id' => 'nullable|exists:categories,id',
             'title' => 'required|unique:posts',
+            'category_id' => 'nullable|exists:categories,id',
             'image' => 'nullable|url',
             'body' => 'nullable'
         ]);
@@ -95,6 +95,7 @@ class CreatepostController extends Controller
                 'required',
                 Rule::unique('posts')->ignore($post->id)
             ],
+            'category_id' => 'nullable|exists:categories,id',
             'image' => 'nullable|url',
             'body' => 'nullable'
         ]);

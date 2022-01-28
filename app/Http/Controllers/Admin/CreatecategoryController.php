@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -39,13 +40,25 @@ class CreatecategoryController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'name' => 'required|unique:categories',
-            'slug' => 'required|unique:categories'
+            'name' => 'required|unique:categories'
         ]);
+
+        $validate['slug'] = Str::slug($validate['name']);
 
         Category::create($validate);
 
         return redirect()->route('admin.categories.index')->with('message', "Hai creato una nuova categoria con successo.");
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Category $category)
+    {
+        //
     }
 
     /**
@@ -69,9 +82,10 @@ class CreatecategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $validate = $request->validate([
-            'name' => 'required|unique:categories',
-            'slug' => 'required|unique:categories'
+            'name' => 'required|unique:categories'
         ]);
+
+        $validate['slug'] = Str::slug($validate['name']);
 
         $category->update($validate);
 
