@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <h2 class="mb-4">Tutti i posts con il tags {{ $tag->name }}</h2>
+    <h2 class="mb-4">Tutti i posts con il tag {{ $tag->name }}</h2>
     <div class="row g-5">
         @forelse($posts as $post)
         <div class="col-3">
