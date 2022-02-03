@@ -13,4 +13,11 @@ class PostController extends Controller
     {
         return PostResource::collection(Post::with(['category', 'tags'])->paginate());
     }
+
+    public function show(Post $post)
+    {
+        $thisPost = Post::where('id', $post->id)->whit('category', 'tags')->first();
+
+        return new PostResource($thisPost);
+    }
 }

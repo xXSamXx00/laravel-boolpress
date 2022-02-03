@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('guest.home');
 })->name('home');
 
@@ -43,3 +43,7 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
 
     Route::resource('tags', CreatetagController::class);
 });
+
+Route::get('/{any}', function () {
+    return view('guest.welcome');
+})->where('any', '.*');
