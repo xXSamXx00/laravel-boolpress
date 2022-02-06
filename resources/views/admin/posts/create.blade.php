@@ -10,7 +10,7 @@
     <h2>Crea un nuovo Post</h2>
     <div class="create">
         @include('partials.error')
-        <form action="{{ route('admin.posts.store') }}" method="post">
+        <form action="{{ route('admin.posts.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Titolo</label>
@@ -22,7 +22,7 @@
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Immagine</label>
-                <input type="text" class="form-control" name="image" id="image" class="form-control @error('image') is-invalid @enderror" aria-describedby="imageHelper" placeholder="Inserisci il link" value="{{ old('image') }}">
+                <input type="file" class="form-control" name="image" id="image" class="form-control @error('image') is-invalid @enderror" aria-describedby="imageHelper" accept="images/*">
                 <small id="imageHelper" class="form-text text-muted">Scrivi il link completo dell' immagine, max 255 caratteri</small>
                 @error('image')
                 <div class="alert alert-danger">{{ $message }}</div>

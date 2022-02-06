@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class CreatepostController extends Controller
@@ -50,9 +51,16 @@ class CreatepostController extends Controller
         $validate = $request->validate([
             'title' => 'required|unique:posts',
             'category_id' => 'nullable|exists:categories,id',
-            'image' => 'nullable|url',
+            'image' => 'nullable|image|max:500',
             'body' => 'nullable'
         ]);
+
+        if ($request->file('image')) {
+            $image = Storage::put('post_images', $request->file('image'));
+            //oppure
+            // $image = $request->file('image')->store('post_image');
+            $validate['image'] = $image;
+        }
 
         $validate['slug'] = Str::slug($validate['title']);
 
@@ -115,9 +123,17 @@ class CreatepostController extends Controller
                     Rule::unique('posts')->ignore($post->id)
                 ],
                 'category_id' => 'nullable|exists:categories,id',
-                'image' => 'nullable|url',
+                'image' => 'nullable|image|max:500',
                 'body' => 'nullable'
             ]);
+
+            if ($request->file('image')) {
+                Storage::delete($post->image);
+                $image = Storage::put('post_images', $request->file('image'));
+                //oppure
+                // $image = $request->file('image')->store('post_image');
+                $validate['image'] = $image;
+            }
 
             $validate['slug'] = Str::slug($validate['title']);
 
@@ -145,6 +161,7 @@ class CreatepostController extends Controller
     public function destroy(Post $post)
     {
         if (Auth::id() === $post->user_id) {
+            Storage::delete($post->image);
             $post->delete();
 
             return redirect()->route('admin.posts.index')->with('message', "Hai cancellato il post $post->title correttamente.");

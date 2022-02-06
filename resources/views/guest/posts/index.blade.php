@@ -37,7 +37,7 @@
                 <div class="col-3">
                     <a href="{{ route('posts.show', $post->slug) }}">
                         <div class="content">
-                            <img class="img-fluid" src="{{ $post->image }}" alt="{{ $post->title }}">
+                            <img class="img-fluid" src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
                             <h3>{{ $post->title }}</h3>
                         </div>
                     </a>
