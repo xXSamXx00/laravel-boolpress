@@ -22,6 +22,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('posts', 'API\PostController@index');
 
-Route::get('posts/{post}', function (Post $post) {
-    return new PostResource(Post::find($post));
-});
+Route::get('posts/{post}', 'API\PostController@show');

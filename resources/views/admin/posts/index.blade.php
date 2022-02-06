@@ -32,7 +32,7 @@
                 @foreach($posts as $post)
                 <tr>
                     <td>{{ $post->id }}</td>
-                    <td><img height="50" src="{{ $post->image }}" alt="{{ $post->title }}"></td>
+                    <td><img height="50" src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}"></td>
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td>{{ $post->updated_at }}</td>

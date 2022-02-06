@@ -21,7 +21,7 @@
                 <span>Nessun Tag</span>
                 @endforelse
             </p>
-            <img class="img-fluid" src="{{ $post->image }}" alt="{{ $post->title }}">
+            <img class="img-fluid" src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
             <p>{{ $post->body }}</p>
         </div>
     </div>

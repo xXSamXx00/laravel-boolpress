@@ -53790,9 +53790,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\samud\Desktop\Esercizi\Corso Boolean\Giorno 84 - Laravel Authentication\Esercizi\laravel-boolpress\resources\js\admin.js */"./resources/js/admin.js");
-__webpack_require__(/*! C:\Users\samud\Desktop\Esercizi\Corso Boolean\Giorno 84 - Laravel Authentication\Esercizi\laravel-boolpress\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\samud\Desktop\Esercizi\Corso Boolean\Giorno 84 - Laravel Authentication\Esercizi\laravel-boolpress\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\Users\samud\Desktop\Esercizi\Corso Boolean\Giorno 84 - Laravel Authentication & Boolpress\Esercizi\laravel-boolpress\resources\js\admin.js */"./resources/js/admin.js");
+__webpack_require__(/*! C:\Users\samud\Desktop\Esercizi\Corso Boolean\Giorno 84 - Laravel Authentication & Boolpress\Esercizi\laravel-boolpress\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\samud\Desktop\Esercizi\Corso Boolean\Giorno 84 - Laravel Authentication & Boolpress\Esercizi\laravel-boolpress\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
