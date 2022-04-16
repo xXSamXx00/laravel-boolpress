@@ -26,6 +26,9 @@ Route::get('blog', function () {
     return view('guest.posts.blog');
 });
 
+Route::get('contacts', 'ContactController@contacts')->name('contacts');
+Route::post('contacts', 'ContactController@sendContactForm')->name('contacts.send');
+
 Route::get('categories/{category:slug}/posts', 'CategoryController@posts')->name('categories.posts');
 
 Route::get('tags/{tag:slug}/posts', 'TagController@posts')->name('tags.posts');
@@ -42,6 +45,8 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     Route::resource('categories', CreatecategoryController::class);
 
     Route::resource('tags', CreatetagController::class);
+
+    Route::resource('contacts', ContactController::class);
 });
 
 Route::get('/{any}', function () {
